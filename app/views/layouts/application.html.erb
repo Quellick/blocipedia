@@ -7,7 +7,41 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<div class="container">
+      <header class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="/welcome/index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <!--<li class="nav-item">-->
+            <!--  <a class="nav-link" href="/welcome/contact">Contact</a>-->
+            <!--</li>-->
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/signin">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign Out</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Blocipedia</h3>
+      </header>
 <body>
+ <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
+    </div>
+ <% elsif flash[:alert] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+ <% end %>
 
 <%= yield %>
 

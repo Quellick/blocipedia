@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'wikis/index'
+  # get 'wikis/index'
 
-  get 'wikis/show'
+  # get 'wikis/show'
 
-  get 'wikis/new'
+  # get 'wikis/new'
 
-  get 'wikis/edit'
+  # get 'wikis/edit'
   
   resources :wikis
 
@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   get 'welcome/contact'
 
-  get 'welcome/signin'
+  # get 'welcome/signin'
 
-  get 'welcome/signup'
+  # get 'welcome/signup'
   
   root 'welcome#index'
 
