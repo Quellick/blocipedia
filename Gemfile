@@ -34,6 +34,8 @@ source 'https://rubygems.org'
  # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
  gem 'jbuilder', '~> 2.5'
  
+ gem 'devise'
+ 
  gem 'thor', '0.19.1'
  
  group :development do

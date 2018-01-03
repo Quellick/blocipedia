@@ -31,17 +31,21 @@
         <h3 class="text-muted">Blocipedia</h3>
       </header>
 <body>
- <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:notice] %>
-    </div>
- <% elsif flash[:alert] %>
-    <div class="alert alert-warning">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= flash[:alert] %>
-    </div>
- <% end %>
+  
+  <% if user_signed_in? %>
+  <div class="container">
+      <header class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+   Signed in as: <strong><%= current_user.email %></strong> |
+   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'nav-item'  %>
+  <% else %>
+   <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-item'  %> -
+   <%= link_to "Sign In", new_user_session_path, :class => 'nav-item'  %>
+          </ul>
+        </nav>
+      </header>
+  <% end %>
 
 <%= yield %>
 
