@@ -2,10 +2,34 @@
 <html>
 <head>
   <title>Workspace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<div class="container">
+      <header class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="/welcome/index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <!--<li class="nav-item">-->
+            <!--  <a class="nav-link" href="/welcome/contact">Contact</a>-->
+            <!--</li>-->
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/signin">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign Out</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Blocipedia</h3>
+      </header>
 <body>
   
   <% if user_signed_in? %>
