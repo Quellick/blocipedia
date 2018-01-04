@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get 'welcome/contact'
-
-  # get 'welcome/signin'
-
-  # get 'welcome/signup'
   
   root 'welcome#index'
 

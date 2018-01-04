@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Workspace</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta charset="utf-8">
+    <%= csrf_meta_tags %>
+  </head>
+  
 <div class="container">
       <header class="header clearfix">
         <nav>
@@ -14,14 +15,11 @@
             <li class="nav-item">
               <a class="nav-link active" href="/welcome/index">Home <span class="sr-only">(current)</span></a>
             </li>
-            <!--<li class="nav-item">-->
-            <!--  <a class="nav-link" href="/welcome/contact">Contact</a>-->
-            <!--</li>-->
             <li class="nav-item">
-              <a class="nav-link" href="/welcome/signup">Sign Up</a>
+              <a class="nav-link" href="/users/sign_up">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/welcome/signin">Sign In</a>
+              <a class="nav-link" href="/users/sign_in">Sign In</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Sign Out</a>
@@ -33,21 +31,22 @@
 <body>
   
   <% if user_signed_in? %>
-  <div class="container">
+    <div class="container">
       <header class="header clearfix">
         <nav>
           <ul class="nav nav-pills float-right">
-   Signed in as: <strong><%= current_user.email %></strong> |
-   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'nav-item'  %>
+            Signed in as: <strong><%= current_user.email %></strong> |
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'nav-item'  %>
   <% else %>
-   <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-item'  %> -
-   <%= link_to "Sign In", new_user_session_path, :class => 'nav-item'  %>
+            <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-item'  %> -
+            <%= link_to "Sign In", new_user_session_path, :class => 'nav-item'  %>
           </ul>
         </nav>
       </header>
   <% end %>
 
 <%= yield %>
-
+  
+  
 </body>
 </html>
