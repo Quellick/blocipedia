@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <meta charset="utf-8">
+    <title>Blocipedia</title>
     <%= csrf_meta_tags %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
 <div class="container">
       <header class="header clearfix">
         <nav>
@@ -29,7 +29,6 @@
         <h3 class="text-muted">Blocipedia</h3>
       </header>
 <body>
-  
   <% if user_signed_in? %>
     <div class="container">
       <header class="header clearfix">
@@ -44,6 +43,18 @@
         </nav>
       </header>
   <% end %>
+  
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
 <%= yield %>
   
