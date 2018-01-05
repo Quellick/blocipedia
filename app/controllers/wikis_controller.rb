@@ -24,7 +24,7 @@ class WikisController < ApplicationController
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
     else
-      flash[:notice] = "There was an error saving the Wiki. Please try again"
+      flash.now[:alert] = "There was an error saving the Wiki. Please try again"
       render :new
     end
   end
@@ -53,7 +53,6 @@ class WikisController < ApplicationController
   
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
     
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

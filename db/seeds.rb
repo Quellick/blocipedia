@@ -1,12 +1,42 @@
- require 'random_data'
- 
- # Create Wiki Posts
- 50.times do
-   Wiki.create!(
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph
+require 'faker'
+
+ 10.times do
+   User.create!(
+     email: Faker::Internet.email,
+     password: 'helloworld',
    )
  end
- 
-  puts "Seed finished"
- puts "#{Wiki.count} Wiki posts created"
+
+ users = User.all
+
+ 100.times do
+   wiki = Wiki.create!(
+     user: users.sample,
+     title: Faker::StarWars.character,
+     body: Faker::StarWars.quote
+   )
+ end
+
+ wikis = Wiki.all
+
+ admin = User.create!(
+   email: 'admin@example.com',
+   password: 'password',
+   role: 'admin'
+ )
+
+ premium = User.create!(
+   email: 'premium@example.com',
+   password: 'password',
+   role: 'premium'
+ )
+
+ standard = User.create!(
+   email: 'standard@example.com',
+   password: 'password',
+   role: 'standard'
+ )
+
+ puts "Seed finished"
+ puts "#{User.count} users created"
+ puts "#{Wiki.count} posts created"
