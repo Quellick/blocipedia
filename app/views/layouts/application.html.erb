@@ -21,28 +21,24 @@
             <li class="nav-item">
               <a class="nav-link" href="/users/sign_in">Sign In</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sign Out</a>
-            </li>
           </ul>
         </nav>
         <h3 class="text-muted">Blocipedia</h3>
       </header>
 <body>
   <% if user_signed_in? %>
-    <div class="container">
-      <header class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills float-right">
-            Signed in as: <strong><%= current_user.email %></strong> |
-            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'nav-item'  %> - 
-            <%= link_to 'Upgrade Account', new_charge_path, :class => 'nav-item' %> - <%= link_to 'Downgrade Account', downgrade_new_path, :class => 'nav-item' %>
-  <% else %>
-            <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-item'  %> -
-            <%= link_to "Sign In", new_user_session_path, :class => 'nav-item'  %>
-          </ul>
-        </nav>
-      </header>
+    Signed in as: <strong><%= current_user.email %></strong> |
+    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-item' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'nav-item'  %>
+      <% if current_user.standard? || !current_user.admin? %>
+        <li><%= link_to 'Upgrade Account', new_charge_path, :class => 'nav-item' %></li>
+      <% elsif current_user.premium? %>
+        <li><%= link_to 'Downgrade Account', downgrade_new_path, :class => 'nav-item' %></li>
+      <% end %>
+      <% else %>
+        <ul>
+        <%= link_to "Sign Up", new_user_registration_path, :class => 'nav-item'  %> -
+        <%= link_to "Sign In", new_user_session_path, :class => 'nav-item'  %>
+        </ul>
   <% end %>
   
   
