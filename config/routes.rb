@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   
   resources :downgrade, only: [:new, :create]
   
-  resources :posts, only: [:index, :show]
-
   devise_for :users
 
   get 'welcome/index'
