@@ -1,6 +1,7 @@
 <% if user_is_authorized_to_view?(@wikis) %>
 <h1><%= @wikis.title %></h1>
- <p><%= @wikis.body %></p>
+ <p><%= markdown(@wikis.body) %></p>
+<h4>Published <%= time_ago_in_words @wikis.published_at %> ago</h4>
 <div class="col-md-4">
     <% if user_is_authorized_to_update? %>
         <%= link_to "Edit", edit_wiki_url(@wikis.id), class: 'btn btn-success' %>
