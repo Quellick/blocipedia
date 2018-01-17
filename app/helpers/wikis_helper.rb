@@ -4,7 +4,7 @@ module WikisHelper
   end
 
   def user_is_authorized_to_update?
-    current_user
+    current_user 
   end
 
   def user_is_authorized_to_delete?(wiki)
