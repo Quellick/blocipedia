@@ -43,5 +43,37 @@
        </div>
      <% end %>
    </div>
+   <% if (current_user == @wiki.user || current_user.role == 'admin') && @wiki.private?%>
+   <div class="row">
+   <div class="col-md-4">
+   <h3>Current Collaborators</h3>
+ 
+     <% @users.each do |user| %>
+ 
+         <% if @wiki.users.include? user %>
+ 
+           <%= link_to wiki_collaborator_path(@wiki, @wiki.collaborator_for(user)), method: :delete, class: 'btn btn-danger btn-sm' do %><span class="glyphicon glyphicon-remove"></span><% end %>
+           <%= user.name %>
+           <br>
+         <% end %>
+ 
+     <% end %>
+     </div>
+ 
+  <div class="col-md-4">
+ <h3>Add Collaborators</h3>
+ 
+     <% @users.each do |user| %>
+ 
+         <% if (!@wiki.users.include?(user) && user != current_user) %>
+ 
+           <%= link_to wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-success btn-sm' do %><span class="glyphicon glyphicon-ok"></span><% end %>
+           <%= user.name %>
+           <br>
+         <% end %>
+ 
+     <% end %>
+     </div>
+ <% end %>
 <% end %>
 </div>
