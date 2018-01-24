@@ -11,12 +11,7 @@
    <div class="media">
      <div class="media-body">
        <h4 class="media-heading">
-         <!--<% if wiki.private? %>-->
-         <!--  <%= link_to wiki.title, wiki, class: "private" %> <small>[private]</small>-->
-         <!--<% else %>-->
-         <!--  <%= link_to wiki.title, wiki %>-->
-         <!--<% end %>-->
-          <% if current_user.premium? || current_user.admin? %>
+          <% if current_user.premium? || current_user.admin? || Collaborator.find_by(user_id: current_user.id).present? %>
             <h4 class="media-heading">
             <%= link_to wiki.title, wiki %>
             </h4>

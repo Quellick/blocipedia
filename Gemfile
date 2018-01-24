@@ -49,6 +49,8 @@ source 'https://rubygems.org'
  
  gem 'figaro', '1.0'
  
+ gem 'pry'
+ 
  group :development do
    gem 'listen', '~> 3.0.5'
  end

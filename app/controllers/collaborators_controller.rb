@@ -1,9 +1,29 @@
 class CollaboratorsController < ApplicationController
   def create
-    @collaborator = Collaborator.new(wiki_id: @wiki.id, user_id: params[:user_id])
+    @user = User.find_by_email(params[:email].downcase)
+    @wiki = Wiki.find(params[:wiki_id])
+    
+    if @user == nil
+      flash[:notice] = "User could not be found."
+      redirect_to edit_wiki_path(@wiki)
+
+    elsif @wiki.users.include?(@user)
+      flash[:notice] = "User is already a collaborator."
+      redirect_to edit_wiki_path(@wiki)
+
+    else
+      @collaborator = Collaborator.new
+      @collaborator.user_id = @user.id
+      @collaborator.wiki_id = @wiki.id
+
       if @collaborator.save
+        flash[:notice] = "Collaborator added."
+        redirect_to edit_wiki_path(@wiki)
+      else
+        flash[:notice] = "Error. Please try again."
         redirect_to edit_wiki_path(@wiki)
       end
+    end
   end
 
   def destroy

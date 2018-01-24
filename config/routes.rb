@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
- 
-  get 'collaborators/create'
-
-  get 'collaborators/destroy'
 
   get 'downgrade/new'
 
